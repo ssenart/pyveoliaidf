@@ -25,7 +25,7 @@ classifiers = [
 requires-python = ">=3.10"
 dependencies = [
     "aiohttp>=3.10",
-    "certifi>=2023.7.22",
+    "certifi>=2026.10.18",
     "pydantic>=2.10",
 ]
 

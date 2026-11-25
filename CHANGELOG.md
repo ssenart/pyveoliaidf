@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Security
+- The library requires `certifi>=2026.10.18`. The older versions trust emSign root certificates whose intermediate keys were compromised.
+
 ### Fixed
 - The login failed with `CERTIFICATE_VERIFY_FAILED`: the Veolia site renewed its certificate with another issuer, and still does not send the intermediate. The library now bundles the `GandiCert` intermediate (DigiCert Global Root G2), and keeps the previous one.
 - `async with Client(...)` closes the client when the login fails or is cancelled. The HTTP session stayed open, and Home Assistant logged `Unclosed client session` after each failed update.
