@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0a3] - 2026-11-25
+
 ### Security
 - The library requires `certifi>=2026.10.18`. The older versions trust emSign root certificates whose intermediate keys were compromised.
 
@@ -168,7 +170,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add LoginError exception raised when PyVeoliaIDF is unable to sign in the Veolia Web site with the given username/password.
 - Add timestamp property that contains date/time when the data has been retrieved.
 
-[Unreleased]: https://github.com/ssenart/pyveoliaidf/compare/0.5.0a2...HEAD
+[Unreleased]: https://github.com/ssenart/pyveoliaidf/compare/0.5.0a3...HEAD
+[0.5.0a3]: https://github.com/ssenart/pyveoliaidf/compare/0.5.0a2...0.5.0a3
 [0.5.0a2]: https://github.com/ssenart/pyveoliaidf/compare/0.5.0a1...0.5.0a2
 [0.5.0a1]: https://github.com/ssenart/pyveoliaidf/compare/0.4.6a1...0.5.0a1
 [0.4.6a1]: https://github.com/ssenart/PyVeoliaIDF/compare/0.4.5...0.4.6a1
