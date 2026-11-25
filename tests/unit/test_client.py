@@ -247,6 +247,20 @@ class TestLifecycle:
 
         assert api.closed
 
+    async def test_context_manager_closes_when_the_login_fails(self) -> None:
+        # Python does not call __aexit__ when __aenter__ raises, so the client has to close itself.
+        class UnreachableApi(FakeApi):
+            async def login(self) -> None:
+                raise ServerError("The server could not be reached.")
+
+        api = UnreachableApi()
+
+        with pytest.raises(ServerError, match="could not be reached"):
+            async with client_for(api):
+                pytest.fail("The block must not run.")
+
+        assert api.closed
+
     async def test_logout(self) -> None:
         api = FakeApi()
         client = client_for(api)

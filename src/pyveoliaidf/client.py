@@ -58,7 +58,12 @@ class Client:
 
     # ------------------------------------------------------
     async def __aenter__(self) -> "Client":
-        await self.login()
+        try:
+            await self.login()
+        except BaseException:
+            # __aexit__ is not called when __aenter__ raises (or is cancelled): the session would stay open.
+            await self.close()
+            raise
 
         return self
 

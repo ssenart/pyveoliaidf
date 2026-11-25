@@ -77,13 +77,14 @@ class TestTls:
         assert context.verify_mode == ssl.CERT_REQUIRED
         assert context.check_hostname
 
-    def test_context_trusts_the_bundled_intermediate(self) -> None:
+    @pytest.mark.parametrize("name", ["GandiCert", "Gandi RSA Domain Validation Secure Server CA 3"])
+    def test_context_trusts_the_bundled_intermediates(self, name: str) -> None:
         names = []
         for certificate in build_ssl_context().get_ca_certs():
             subject: Any = certificate["subject"]  # a tuple of tuples of (key, value) pairs
             names += [value for rdn in subject for key, value in rdn if key == "commonName"]
 
-        assert "Gandi RSA Domain Validation Secure Server CA 3" in names
+        assert name in names
 
 
 class TestPublicApi:

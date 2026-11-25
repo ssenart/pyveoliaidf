@@ -45,7 +45,7 @@ Verified by live calls and by the integration tests:
 
 Not captured: the methods behind "Consommation facturée", "Alertes de consommation", the forecast and the comparison with the previous year. Their Apex methods are not in the page bundles (the components load lazily), so they need a capture of the browser's calls.
 
-The site does not send its intermediate certificate, so `tls.py` adds the Gandi one that `certs/` bundles.
+The site does not send its intermediate certificate, so `tls.py` adds the Gandi ones that `certs/` bundles. A renewal of the site certificate can change its issuer: the login then fails with `CERTIFICATE_VERIFY_FAILED`, and the new intermediate (the "CA Issuers" address in the site certificate) has to be added to `certs/` and to `INTERMEDIATE_CERTIFICATES`, after checking with `openssl verify` that it chains to a root of `certifi`.
 
 ## What has been verified against the real site
 Verified live (the integration tests exercise them): the bootstrap context, the login and its redirect, the CSRF cookie, the three Apex methods, the three steps, the daily range limit, the windowing, and the semantics above.
